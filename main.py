@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
-"""The One-Line Laugh entry (make.fun u-ronigrv-the-one-line-laugh-7ccca46f).
+"""The One-Line Laugh entry.
 
-Writes one funny line to /output/entry.txt: a single sentence of at most
-200 characters. Deterministic, no network, no dependencies, no secrets.
+Writes one funny line (a single sentence, at most 200 characters) to
+/output/entry.txt. Standard library only, no network, deterministic.
 """
+
 import os
 
-LINE = "I bought a houseplant to teach myself responsibility, and it died just to prove I was a fast learner."
+LINE = "I restarted the router, and for one glorious minute the whole house believed in me again."
 
 
 def main():
+    assert 1 <= len(LINE) <= 200, "line must be 1-200 characters"
+    assert LINE.strip(), "line must not be only whitespace"
+    assert LINE.count(".") == 1 and LINE.endswith("."), "line must be a single sentence"
     os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
+    with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
         f.write(LINE)
 
 
