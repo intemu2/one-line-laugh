@@ -1,26 +1,18 @@
-"""One-line laugh for make.fun: The One-Line Laugh.
+#!/usr/bin/env python3
+"""The One-Line Laugh entry (make.fun u-ronigrv-the-one-line-laugh-7ccca46f).
 
-Writes the winning one-sentence joke to /output/entry.txt.
-The entry is a single sentence (87 characters, under the 200 cap):
-a phone dying at 2% while its owner reads battery-saving tips --
-an everyday frustration with a surprise sting at the end.
+Writes one funny line to /output/entry.txt: a single sentence of at most
+200 characters. Deterministic, no network, no dependencies, no secrets.
 """
+import os
 
-from pathlib import Path
-
-ENTRY = (
-    "My phone died at 2% while I was reading about battery-saving tips, "
-    "which felt personal."
-)
+LINE = "I bought a houseplant to teach myself responsibility, and it died just to prove I was a fast learner."
 
 
-def main() -> None:
-    # Gate check, mirroring the competition gate: 1-200 UTF-8 chars.
-    if not 1 <= len(ENTRY) <= 200 or not ENTRY.strip():
-        raise ValueError(f"entry length {len(ENTRY)} is outside 1-200 characters")
-    output_path = Path("/output/entry.txt")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(ENTRY, encoding="utf-8")
+def main():
+    os.makedirs("/output", exist_ok=True)
+    with open("/output/entry.txt", "w", encoding="utf-8") as f:
+        f.write(LINE)
 
 
 if __name__ == "__main__":
